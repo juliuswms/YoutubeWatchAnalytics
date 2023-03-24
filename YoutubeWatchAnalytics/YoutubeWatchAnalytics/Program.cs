@@ -1,4 +1,4 @@
-﻿using Google.Apis.Services;
+using Google.Apis.Services;
 using Google.Apis.YouTube.v3;
 using Newtonsoft.Json;
 using System.Text.RegularExpressions;
@@ -81,7 +81,7 @@ void RequestPackage()
     List<VideoData> videoList = new List<VideoData>();
     for (int i = (package - 1) * 10000; i < 10000 * package; i++)
     {
-        GetYoutubeData(videoURLs[i], videoList);
+        GetYoutubeData(videoURLs[i], videoList, apiKey, applicationName);
     }
     Console.WriteLine("Loaded Videos from API. . .");
     using (StreamWriter streamWriter = new StreamWriter($"package{package}.txt"))
@@ -161,7 +161,7 @@ TimeSpan GetTotalDuration(List<VideoData> videoList)
     }
     return timeSpan;
 }
-void GetYoutubeData(string videoLink, List<VideoData> videoList)
+void GetYoutubeData(string videoLink, List<VideoData> videoList, string apiKey, string applicationName)
 {
     // Extract the video ID from the link
     string videoId = ExtractVideoId(videoLink);
