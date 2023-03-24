@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "8rBtfkhiZoHaA8BQuPoJ9xIzQsrT8JlDK3M+HQplh3uXsjcoTBBzN57QzlwQFSQYwpojxGTCLAfkAipU25u8yQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\willm\\source\\repos\\YoutubeWatchAnalytics\\YoutubeWatchAnalytics\\YoutubeWatchAnalytics.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\willm\\.nuget\\packages\\google.apis\\1.58.0\\google.apis.1.58.0.nupkg.sha512",
+    "C:\\Users\\willm\\.nuget\\packages\\google.apis.auth\\1.58.0\\google.apis.auth.1.58.0.nupkg.sha512",
+    "C:\\Users\\willm\\.nuget\\packages\\google.apis.core\\1.58.0\\google.apis.core.1.58.0.nupkg.sha512",
+    "C:\\Users\\willm\\.nuget\\packages\\google.apis.youtube.v3\\1.58.0.2874\\google.apis.youtube.v3.1.58.0.2874.nupkg.sha512",
+    "C:\\Users\\willm\\.nuget\\packages\\htmlagilitypack\\1.11.46\\htmlagilitypack.1.11.46.nupkg.sha512",
+    "C:\\Users\\willm\\.nuget\\packages\\newtonsoft.json\\13.0.2\\newtonsoft.json.13.0.2.nupkg.sha512"
+  ],
+  "logs": []
+}
