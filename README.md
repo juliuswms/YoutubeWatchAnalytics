@@ -43,4 +43,5 @@ This project uses the following dependencies:
 
 Newtonsoft.Json (version 13.0.1)
 Google.Apis.YouTube.v3 (version 1.51.0.460)
+
 These dependencies are managed using NuGet.
