@@ -6,7 +6,7 @@ This project is a tool for analyzing YouTube Watch History data, including video
 ## Getting Started
 To use this tool, you'll need to obtain a Google API key for the YouTube Data API v3. You can get a key by following these steps:
 
-1. Go to the Google Cloud Console
+1. Go to the Google [Cloud Console](https://console.cloud.google.com/)
 2. Create a new project or select an existing one
 3. Navigate to the "APIs & Services" section and select "Dashboard"
 4. Click the "+ ENABLE APIS AND SERVICES" button and search for "YouTube Data API v3"
@@ -29,13 +29,15 @@ The results of the analyses will be displayed in the console.
 ## Obtaining Watch History Data
 To obtain your own watch history data, follow these steps:
 
-1. Go to YouTube and sign in to your account
-2. Click on your profile picture in the top right corner and select "Your data in YouTube"
-3. Select "YouTube History"
-4. Select "Manage all activity"
-5. Click on "Download" at the bottom of the page
-6. Select the date range for your data and click "Next"
-7. Select "JSON" as the file type and click "Create export"
+1. Go to Google and sign in to your account
+2. Click on your Profil
+3. Select "Manage your Google Account"
+4. Select "Data and privacy"
+5. Click on "[Download your Data](https://takeout.google.com/)" at the bottom of the page
+6. Now deselect everything except for "Youtube and Youtube Music"
+7. Under "All Youtube data formats" select only "history"
+8. Under "Multiple formats" select JSON
+9. Now click on "Next step" and than "Create export"
 Once the export is complete, you'll receive an email with a link to download the data. Download the file and extract the contents to a directory on your computer.
 
 ### Dependencies
