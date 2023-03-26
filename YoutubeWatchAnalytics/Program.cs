@@ -12,7 +12,13 @@ while (run)
     try
     {
         Console.Clear();
-        Console.WriteLine("YouTube Watchtime Analytics by eugene :)");
+        Console.WriteLine(@"__   __          _         _        __        __    _       _        _                _       _   _          ");
+        Console.WriteLine(@"\ \ / /__  _   _| |_ _   _| |__   __\ \      / /_ _| |_ ___| |__    / \   _ __   __ _| |_   _| |_(_) ___ ___ ");
+        Console.WriteLine(@" \ V / _ \| | | | __| | | | '_ \ / _ \ \ /\ / / _` | __/ __| '_ \  / _ \ | '_ \ / _` | | | | | __| |/ __/ __|");
+        Console.WriteLine(@"  | | (_) | |_| | |_| |_| | |_) |  __/\ V  V / (_| | || (__| | | |/ ___ \| | | | (_| | | |_| | |_| | (__\__ \");
+        Console.WriteLine(@"  |_|\___/ \__,_|\__|\__,_|_.__/ \___| \_/\_/ \__,_|\__\___|_| |_/_/   \_\_| |_|\__,_|_|\__, |\__|_|\___|___/");
+        Console.WriteLine(@"                                                                                        |___/                ");
+        Console.WriteLine("                                               by eugene :)");
         Console.WriteLine();
         Console.WriteLine("Request Packages [1]");
         Console.WriteLine("Merge Packages Files [2]");
@@ -46,7 +52,6 @@ void RequestPackage()
     Console.Write("Json-Path: ");
     string jsonpath = Console.ReadLine();
     string watchJson = string.Empty;
-    Console.WriteLine();
     using (StreamReader reader = new StreamReader(jsonpath))
     {
         watchJson = reader.ReadToEnd();
@@ -138,14 +143,24 @@ void MergePackages()
 
     Console.WriteLine($"Videos watched: {videoList.Count}");
     Console.WriteLine($"Creators watched: {creatorList.Count}");
-    Console.WriteLine("Your Top 3 Creators:");
-    var topCreators = creatorList.OrderByDescending(x => x.Value).Take(3);
+    Console.WriteLine();
+    Console.WriteLine("Your Top 10 Creators:");
+    var topCreators = creatorList.OrderByDescending(x => x.Value).Take(10);
     foreach (var creator in topCreators)
     {
         Console.WriteLine($"{creator.Key}: {creator.Value} Videos");
     }
     Console.WriteLine();
-    Console.WriteLine("Press any button...");
+    Console.WriteLine("Your Top 10 Creators in time:");
+    Dictionary<string, TimeSpan> creatorListTime = GetTotalCreatorTime(videoList);
+    var topCreatorsTime = creatorListTime.OrderByDescending(x => x.Value).Take(10);
+    foreach (var creator in topCreatorsTime)
+    {
+        Console.WriteLine($"{creator.Key}: {creator.Value.Days} Days and {creator.Value.Hours}h");
+    }
+    Console.WriteLine();
+
+    Console.Write("Press any button...");
     Console.ReadKey();
 }
 
@@ -154,9 +169,14 @@ TimeSpan GetTotalDuration(List<VideoData> videoList)
     TimeSpan timeSpan = new TimeSpan();
     foreach (VideoData video in videoList)
     {
-        if (video.Duration <= new TimeSpan(3, 0, 0))
+        //Sorting out extramly (Livesteams, 24h Videos...)
+        if (video.Duration <= new TimeSpan(5, 0, 0) && video.Duration.Days == 0)
         {
             timeSpan += video.Duration;
+        }
+        else
+        {
+            Console.WriteLine();
         }
     }
     return timeSpan;
@@ -222,7 +242,7 @@ Dictionary<string, int> GetTotalCreator(List<VideoData> videoList)
 
     foreach (VideoData video in videoList)
     {
-        string creatorName = video.ChannelName; // assume Creator is a property of the Video class that returns the name of the creator
+        string creatorName = video.ChannelName;
 
         if (creatorCount.ContainsKey(creatorName))
         {
@@ -231,6 +251,28 @@ Dictionary<string, int> GetTotalCreator(List<VideoData> videoList)
         else
         {
             creatorCount[creatorName] = 1;
+        }
+    }
+    return creatorCount;
+}
+
+Dictionary<string, TimeSpan> GetTotalCreatorTime(List<VideoData> videoList)
+{
+    Dictionary<string, TimeSpan> creatorCount = new Dictionary<string, TimeSpan>();
+
+    foreach (VideoData video in videoList)
+    {
+        string creatorName = video.ChannelName;
+
+        if (creatorCount.ContainsKey(creatorName))
+        {
+            if(video.Duration <= new TimeSpan(5, 0, 0) && video.Duration.Days == 0)
+                creatorCount[creatorName] += video.Duration;
+        }
+        else
+        {
+            if (video.Duration <= new TimeSpan(5, 0, 0) && video.Duration.Days == 0)
+                creatorCount[creatorName] = video.Duration;
         }
     }
     return creatorCount;
